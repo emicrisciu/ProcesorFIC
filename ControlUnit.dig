@@ -817,6 +817,68 @@
       </elementAttributes>
       <pos x="620" y="20"/>
     </visualElement>
+    <visualElement>
+      <elementName>Or</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="3"/>
+        </entry>
+      </elementAttributes>
+      <pos x="1340" y="1460"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>jmpOp</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1340" y="1280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Out</elementName>
+      <elementAttributes>
+        <entry>
+          <string>Label</string>
+          <string>strDM</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1400" y="1560"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="1"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>storeOp</string>
+        </entry>
+      </elementAttributes>
+      <pos x="1300" y="1280"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>jmpOp</string>
+        </entry>
+      </elementAttributes>
+      <pos x="820" y="1400"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -886,6 +948,10 @@
     <wire>
       <p1 x="720" y="920"/>
       <p2 x="760" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="1320" y="1560"/>
+      <p2 x="1400" y="1560"/>
     </wire>
     <wire>
       <p1 x="440" y="540"/>
@@ -1276,6 +1342,10 @@
       <p2 x="580" y="120"/>
     </wire>
     <wire>
+      <p1 x="820" y="1400"/>
+      <p2 x="840" y="1400"/>
+    </wire>
+    <wire>
       <p1 x="320" y="380"/>
       <p2 x="580" y="380"/>
     </wire>
@@ -1321,6 +1391,10 @@
     </wire>
     <wire>
       <p1 x="840" y="1360"/>
+      <p2 x="840" y="1400"/>
+    </wire>
+    <wire>
+      <p1 x="840" y="1400"/>
       <p2 x="840" y="1480"/>
     </wire>
     <wire>
@@ -1342,6 +1416,10 @@
     <wire>
       <p1 x="1300" y="980"/>
       <p2 x="1300" y="1020"/>
+    </wire>
+    <wire>
+      <p1 x="1300" y="1280"/>
+      <p2 x="1300" y="1460"/>
     </wire>
     <wire>
       <p1 x="920" y="1200"/>
@@ -1386,6 +1464,10 @@
     <wire>
       <p1 x="1320" y="740"/>
       <p2 x="1320" y="920"/>
+    </wire>
+    <wire>
+      <p1 x="1320" y="1520"/>
+      <p2 x="1320" y="1560"/>
     </wire>
     <wire>
       <p1 x="300" y="40"/>
@@ -1482,6 +1564,10 @@
     <wire>
       <p1 x="1020" y="-20"/>
       <p2 x="1020" y="100"/>
+    </wire>
+    <wire>
+      <p1 x="1340" y="1280"/>
+      <p2 x="1340" y="1460"/>
     </wire>
   </wires>
   <measurementOrdering/>
