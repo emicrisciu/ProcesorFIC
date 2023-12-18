@@ -115,7 +115,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>overflow</string>
+          <string>overfl</string>
         </entry>
       </elementAttributes>
       <pos x="160" y="480"/>
@@ -130,7 +130,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>ZERO</string>
+          <string>ZEROFLAG</string>
         </entry>
       </elementAttributes>
       <pos x="920" y="140"/>
@@ -150,7 +150,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>CARRY</string>
+          <string>CARRYFLAG</string>
         </entry>
       </elementAttributes>
       <pos x="920" y="380"/>

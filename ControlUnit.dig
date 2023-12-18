@@ -658,7 +658,7 @@
       <elementAttributes>
         <entry>
           <string>Label</string>
-          <string>ZERO</string>
+          <string>ZEROFLAG</string>
         </entry>
       </elementAttributes>
       <pos x="-20" y="900"/>
@@ -877,7 +877,7 @@
           <string>jmpOp</string>
         </entry>
       </elementAttributes>
-      <pos x="820" y="1400"/>
+      <pos x="800" y="1400"/>
     </visualElement>
   </visualElements>
   <wires>
@@ -1342,7 +1342,7 @@
       <p2 x="580" y="120"/>
     </wire>
     <wire>
-      <p1 x="820" y="1400"/>
+      <p1 x="800" y="1400"/>
       <p2 x="840" y="1400"/>
     </wire>
     <wire>
