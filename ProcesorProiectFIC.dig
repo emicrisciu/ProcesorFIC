@@ -4,20 +4,36 @@
   <attributes>
     <entry>
       <string>Description</string>
-      <string>The program counter.
-Here the current program counter is stored.
-The various inputs can be used to influence how the 
-program counter is modified if a clock signal happens.
-
-{{de Der Programmzähler. 
-Hier wird der aktuelle Programmzähler gespeichert. 
-Über die verschiedenen Eingänge kann beeinflußt 
-werden, auf welche Weise der Programmzähler mit 
-dem Takt weiter geschaltet wird.}}</string>
+      <string>The processor.
+A circuit which combines multiple necessary modules, such as the
+Program Counter, the Instruction and Data Memories, the Control Unit,
+the Sign Extend Unit, the Register File, the ALU, the Flags Register and the
+Stack Pointer.
+This big circuit is resposible with fetching instructions (one by one) from the
+Instruction Memory, decode them, send the data through the correct buses,
+generating the control signals depeding on the binary information received
+from the 16-bit instructions, computing some operations inside the ALU and
+writing/reading results from three registers (X, Y, Accumulator).
+The processor is the heart of a computer, therefore it is responsible with
+every kind of calculations.</string>
+    </entry>
+    <entry>
+      <string>romContent</string>
+      <romList>
+        <roms/>
+      </romList>
     </entry>
     <entry>
       <string>Width</string>
       <int>5</int>
+    </entry>
+    <entry>
+      <string>preloadProgram</string>
+      <boolean>true</boolean>
+    </entry>
+    <entry>
+      <string>preloadProgramFile</string>
+      <file>C:\FIC\assembler.hex</file>
     </entry>
   </attributes>
   <visualElements>
@@ -105,21 +121,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <int>16</int>
         </entry>
       </elementAttributes>
-      <pos x="2140" y="100"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Add</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>BranchingPC</string>
-        </entry>
-        <entry>
-          <string>Bits</string>
-          <int>16</int>
-        </entry>
-      </elementAttributes>
-      <pos x="2660" y="100"/>
+      <pos x="2140" y="260"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -133,21 +135,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>zero</string>
         </entry>
       </elementAttributes>
-      <pos x="2100" y="140"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>zero</string>
-        </entry>
-      </elementAttributes>
-      <pos x="2600" y="140"/>
+      <pos x="2100" y="300"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -175,7 +163,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>one</string>
         </entry>
       </elementAttributes>
-      <pos x="2100" y="120"/>
+      <pos x="2100" y="280"/>
     </visualElement>
     <visualElement>
       <elementName>RAMDualPort</elementName>
@@ -222,7 +210,7 @@ dem Takt weiter geschaltet wird.}}</string>
         </entry>
         <entry>
           <string>NetName</string>
-          <string>strIM</string>
+          <string>HLT</string>
         </entry>
       </elementAttributes>
       <pos x="2120" y="540"/>
@@ -231,106 +219,6 @@ dem Takt weiter geschaltet wird.}}</string>
       <elementName>Not</elementName>
       <elementAttributes/>
       <pos x="2160" y="540"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>DataIN</string>
-        </entry>
-        <entry>
-          <string>Bits</string>
-          <int>16</int>
-        </entry>
-      </elementAttributes>
-      <pos x="2220" y="480"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>storeInstrMem</string>
-        </entry>
-        <entry>
-          <string>InDefault</string>
-          <value v="1" z="false"/>
-        </entry>
-      </elementAttributes>
-      <pos x="2080" y="700"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>NetName</string>
-          <string>strIM</string>
-        </entry>
-      </elementAttributes>
-      <pos x="2120" y="700"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Multiplexer</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Bits</string>
-          <int>16</int>
-        </entry>
-        <entry>
-          <string>flipSelPos</string>
-          <boolean>true</boolean>
-        </entry>
-      </elementAttributes>
-      <pos x="2000" y="280"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Const</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Value</string>
-          <long>0</long>
-        </entry>
-        <entry>
-          <string>Bits</string>
-          <int>16</int>
-        </entry>
-      </elementAttributes>
-      <pos x="1940" y="320"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>resetPC</string>
-        </entry>
-      </elementAttributes>
-      <pos x="2080" y="740"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>NetName</string>
-          <string>rstPC</string>
-        </entry>
-      </elementAttributes>
-      <pos x="2120" y="740"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="1"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>rstPC</string>
-        </entry>
-      </elementAttributes>
-      <pos x="2020" y="260"/>
     </visualElement>
     <visualElement>
       <elementName>RegisterFileProiectFIC.dig</elementName>
@@ -436,10 +324,6 @@ dem Takt weiter geschaltet wird.}}</string>
           <int>16</int>
         </entry>
         <entry>
-          <string>isProgramMemory</string>
-          <boolean>true</boolean>
-        </entry>
-        <entry>
           <string>Label</string>
           <string>DM</string>
         </entry>
@@ -512,20 +396,6 @@ dem Takt weiter geschaltet wird.}}</string>
       <pos x="3500" y="260"/>
     </visualElement>
     <visualElement>
-      <elementName>Const</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Value</string>
-          <long>0</long>
-        </entry>
-        <entry>
-          <string>Bits</string>
-          <int>16</int>
-        </entry>
-      </elementAttributes>
-      <pos x="2580" y="100"/>
-    </visualElement>
-    <visualElement>
       <elementName>Multiplexer</elementName>
       <elementAttributes>
         <entry>
@@ -547,7 +417,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>cmpImm2</string>
         </entry>
       </elementAttributes>
-      <pos x="3800" y="560"/>
+      <pos x="3780" y="560"/>
     </visualElement>
     <visualElement>
       <elementName>Multiplexer</elementName>
@@ -818,34 +688,10 @@ dem Takt weiter geschaltet wird.}}</string>
       <elementAttributes>
         <entry>
           <string>NetName</string>
-          <string>startSP</string>
-        </entry>
-      </elementAttributes>
-      <pos x="2120" y="780"/>
-    </visualElement>
-    <visualElement>
-      <elementName>In</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Label</string>
-          <string>startSP</string>
-        </entry>
-        <entry>
-          <string>InDefault</string>
-          <value v="1" z="false"/>
-        </entry>
-      </elementAttributes>
-      <pos x="2080" y="780"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>NetName</string>
           <string>PCval</string>
         </entry>
       </elementAttributes>
-      <pos x="2240" y="100"/>
+      <pos x="2240" y="260"/>
     </visualElement>
     <visualElement>
       <elementName>InstructionDecoderProiectFIC.dig</elementName>
@@ -875,7 +721,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>ControlUnit</string>
         </entry>
       </elementAttributes>
-      <pos x="2740" y="240"/>
+      <pos x="2740" y="160"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -885,7 +731,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>M</string>
         </entry>
       </elementAttributes>
-      <pos x="3080" y="240"/>
+      <pos x="3080" y="160"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -909,7 +755,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>zero</string>
         </entry>
       </elementAttributes>
-      <pos x="3080" y="260"/>
+      <pos x="3080" y="180"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -919,7 +765,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>one</string>
         </entry>
       </elementAttributes>
-      <pos x="3080" y="280"/>
+      <pos x="3080" y="200"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -929,7 +775,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>loadOp</string>
         </entry>
       </elementAttributes>
-      <pos x="3080" y="300"/>
+      <pos x="3080" y="220"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -939,7 +785,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>cmpImm1</string>
         </entry>
       </elementAttributes>
-      <pos x="3080" y="320"/>
+      <pos x="3080" y="240"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -949,7 +795,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>retOp</string>
         </entry>
       </elementAttributes>
-      <pos x="3080" y="340"/>
+      <pos x="3080" y="260"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -959,7 +805,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>jmpOp</string>
         </entry>
       </elementAttributes>
-      <pos x="3080" y="360"/>
+      <pos x="3080" y="280"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -969,7 +815,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>stackOp</string>
         </entry>
       </elementAttributes>
-      <pos x="3080" y="380"/>
+      <pos x="3080" y="300"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -979,7 +825,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>selPC</string>
         </entry>
       </elementAttributes>
-      <pos x="3080" y="400"/>
+      <pos x="3080" y="320"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -989,7 +835,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>cmpImm2</string>
         </entry>
       </elementAttributes>
-      <pos x="3080" y="420"/>
+      <pos x="3080" y="340"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1003,7 +849,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>ZeroFlag</string>
         </entry>
       </elementAttributes>
-      <pos x="2540" y="360"/>
+      <pos x="2540" y="280"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1017,7 +863,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>Neg</string>
         </entry>
       </elementAttributes>
-      <pos x="2540" y="380"/>
+      <pos x="2540" y="300"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1031,7 +877,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>Carry</string>
         </entry>
       </elementAttributes>
-      <pos x="2540" y="400"/>
+      <pos x="2540" y="320"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1045,7 +891,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>Overflow</string>
         </entry>
       </elementAttributes>
-      <pos x="2540" y="420"/>
+      <pos x="2540" y="340"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1059,7 +905,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>usageALU</string>
         </entry>
       </elementAttributes>
-      <pos x="2540" y="440"/>
+      <pos x="2540" y="360"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1137,7 +983,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <int>16</int>
         </entry>
       </elementAttributes>
-      <pos x="3580" y="-60"/>
+      <pos x="3980" y="20"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1151,7 +997,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>retOp</string>
         </entry>
       </elementAttributes>
-      <pos x="3560" y="-140"/>
+      <pos x="3960" y="-60"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1217,92 +1063,7 @@ dem Takt weiter geschaltet wird.}}</string>
           <string>strDM</string>
         </entry>
       </elementAttributes>
-      <pos x="3080" y="460"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Multiplexer</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Bits</string>
-          <int>16</int>
-        </entry>
-        <entry>
-          <string>flipSelPos</string>
-          <boolean>true</boolean>
-        </entry>
-      </elementAttributes>
-      <pos x="4260" y="400"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>retOp</string>
-        </entry>
-      </elementAttributes>
-      <pos x="4260" y="380"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Const</elementName>
-      <elementAttributes>
-        <entry>
-          <string>Value</string>
-          <long>0</long>
-        </entry>
-        <entry>
-          <string>Bits</string>
-          <int>16</int>
-        </entry>
-      </elementAttributes>
-      <pos x="4240" y="460"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>stackOp</string>
-        </entry>
-      </elementAttributes>
-      <pos x="4980" y="240"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>rotation</string>
-          <rotation rotation="2"/>
-        </entry>
-        <entry>
-          <string>NetName</string>
-          <string>startSP</string>
-        </entry>
-      </elementAttributes>
-      <pos x="4980" y="280"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Or</elementName>
-      <elementAttributes/>
-      <pos x="5020" y="240"/>
-    </visualElement>
-    <visualElement>
-      <elementName>Tunnel</elementName>
-      <elementAttributes>
-        <entry>
-          <string>NetName</string>
-          <string>enSP</string>
-        </entry>
-      </elementAttributes>
-      <pos x="5120" y="260"/>
+      <pos x="3080" y="380"/>
     </visualElement>
     <visualElement>
       <elementName>Multiplexer</elementName>
@@ -1332,11 +1093,83 @@ dem Takt weiter geschaltet wird.}}</string>
       </elementAttributes>
       <pos x="4640" y="280"/>
     </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>zero16b</string>
+        </entry>
+      </elementAttributes>
+      <pos x="3080" y="400"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>zero16b</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2220" y="480"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>HLT</string>
+        </entry>
+      </elementAttributes>
+      <pos x="3080" y="420"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>PCval</string>
+        </entry>
+      </elementAttributes>
+      <pos x="2540" y="380"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>startSP</string>
+        </entry>
+      </elementAttributes>
+      <pos x="3080" y="440"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>enSP</string>
+        </entry>
+      </elementAttributes>
+      <pos x="3080" y="460"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
       <p1 x="4600" y="0"/>
       <p2 x="5060" y="0"/>
+    </wire>
+    <wire>
+      <p1 x="1820" y="0"/>
+      <p2 x="3940" y="0"/>
     </wire>
     <wire>
       <p1 x="2560" y="640"/>
@@ -1351,14 +1184,6 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4880" y="320"/>
     </wire>
     <wire>
-      <p1 x="3040" y="320"/>
-      <p2 x="3080" y="320"/>
-    </wire>
-    <wire>
-      <p1 x="2660" y="320"/>
-      <p2 x="2740" y="320"/>
-    </wire>
-    <wire>
       <p1 x="3200" y="320"/>
       <p2 x="3260" y="320"/>
     </wire>
@@ -1367,8 +1192,16 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4620" y="320"/>
     </wire>
     <wire>
-      <p1 x="1940" y="320"/>
-      <p2 x="2000" y="320"/>
+      <p1 x="3040" y="320"/>
+      <p2 x="3080" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="2540" y="320"/>
+      <p2 x="2620" y="320"/>
+    </wire>
+    <wire>
+      <p1 x="2620" y="320"/>
+      <p2 x="2740" y="320"/>
     </wire>
     <wire>
       <p1 x="3380" y="260"/>
@@ -1379,20 +1212,28 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4600" y="260"/>
     </wire>
     <wire>
-      <p1 x="3040" y="260"/>
-      <p2 x="3080" y="260"/>
-    </wire>
-    <wire>
-      <p1 x="2620" y="260"/>
-      <p2 x="2740" y="260"/>
-    </wire>
-    <wire>
       <p1 x="4100" y="260"/>
       <p2 x="4240" y="260"/>
     </wire>
     <wire>
-      <p1 x="5080" y="260"/>
-      <p2 x="5120" y="260"/>
+      <p1 x="2200" y="260"/>
+      <p2 x="2220" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="2120" y="260"/>
+      <p2 x="2140" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="3040" y="260"/>
+      <p2 x="3080" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="2700" y="260"/>
+      <p2 x="2740" y="260"/>
+    </wire>
+    <wire>
+      <p1 x="2220" y="260"/>
+      <p2 x="2240" y="260"/>
     </wire>
     <wire>
       <p1 x="2560" y="580"/>
@@ -1401,6 +1242,30 @@ dem Takt weiter geschaltet wird.}}</string>
     <wire>
       <p1 x="3180" y="580"/>
       <p2 x="3340" y="580"/>
+    </wire>
+    <wire>
+      <p1 x="3400" y="200"/>
+      <p2 x="3980" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="4060" y="200"/>
+      <p2 x="4240" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="4440" y="200"/>
+      <p2 x="4500" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="4680" y="200"/>
+      <p2 x="4720" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="3040" y="200"/>
+      <p2 x="3080" y="200"/>
+    </wire>
+    <wire>
+      <p1 x="2640" y="200"/>
+      <p2 x="2740" y="200"/>
     </wire>
     <wire>
       <p1 x="3620" y="520"/>
@@ -1421,30 +1286,6 @@ dem Takt weiter geschaltet wird.}}</string>
     <wire>
       <p1 x="3660" y="520"/>
       <p2 x="3980" y="520"/>
-    </wire>
-    <wire>
-      <p1 x="3400" y="200"/>
-      <p2 x="3980" y="200"/>
-    </wire>
-    <wire>
-      <p1 x="4060" y="200"/>
-      <p2 x="4240" y="200"/>
-    </wire>
-    <wire>
-      <p1 x="4440" y="200"/>
-      <p2 x="4500" y="200"/>
-    </wire>
-    <wire>
-      <p1 x="4680" y="200"/>
-      <p2 x="4720" y="200"/>
-    </wire>
-    <wire>
-      <p1 x="2100" y="140"/>
-      <p2 x="2140" y="140"/>
-    </wire>
-    <wire>
-      <p1 x="2600" y="140"/>
-      <p2 x="2660" y="140"/>
     </wire>
     <wire>
       <p1 x="4600" y="140"/>
@@ -1495,14 +1336,6 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="2240" y="460"/>
     </wire>
     <wire>
-      <p1 x="2080" y="780"/>
-      <p2 x="2120" y="780"/>
-    </wire>
-    <wire>
-      <p1 x="2600" y="-80"/>
-      <p2 x="3540" y="-80"/>
-    </wire>
-    <wire>
       <p1 x="3500" y="400"/>
       <p2 x="3560" y="400"/>
     </wire>
@@ -1527,14 +1360,6 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4180" y="400"/>
     </wire>
     <wire>
-      <p1 x="3040" y="400"/>
-      <p2 x="3080" y="400"/>
-    </wire>
-    <wire>
-      <p1 x="2540" y="400"/>
-      <p2 x="2740" y="400"/>
-    </wire>
-    <wire>
       <p1 x="3260" y="400"/>
       <p2 x="3400" y="400"/>
     </wire>
@@ -1543,8 +1368,8 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4320" y="400"/>
     </wire>
     <wire>
-      <p1 x="4240" y="400"/>
-      <p2 x="4260" y="400"/>
+      <p1 x="3040" y="400"/>
+      <p2 x="3080" y="400"/>
     </wire>
     <wire>
       <p1 x="2580" y="720"/>
@@ -1579,24 +1404,8 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="5100" y="-20"/>
     </wire>
     <wire>
-      <p1 x="1820" y="20"/>
-      <p2 x="2780" y="20"/>
-    </wire>
-    <wire>
-      <p1 x="4640" y="20"/>
-      <p2 x="4900" y="20"/>
-    </wire>
-    <wire>
-      <p1 x="2560" y="660"/>
-      <p2 x="2700" y="660"/>
-    </wire>
-    <wire>
-      <p1 x="2820" y="660"/>
-      <p2 x="3840" y="660"/>
-    </wire>
-    <wire>
-      <p1 x="2080" y="660"/>
-      <p2 x="2120" y="660"/>
+      <p1 x="3980" y="-20"/>
+      <p2 x="4540" y="-20"/>
     </wire>
     <wire>
       <p1 x="3560" y="340"/>
@@ -1611,44 +1420,76 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4360" y="340"/>
     </wire>
     <wire>
-      <p1 x="3040" y="340"/>
-      <p2 x="3080" y="340"/>
-    </wire>
-    <wire>
-      <p1 x="2700" y="340"/>
-      <p2 x="2740" y="340"/>
-    </wire>
-    <wire>
       <p1 x="4660" y="340"/>
       <p2 x="4680" y="340"/>
     </wire>
     <wire>
-      <p1 x="2020" y="340"/>
-      <p2 x="2060" y="340"/>
+      <p1 x="3040" y="340"/>
+      <p2 x="3080" y="340"/>
     </wire>
     <wire>
-      <p1 x="3040" y="280"/>
-      <p2 x="3080" y="280"/>
+      <p1 x="2540" y="340"/>
+      <p2 x="2740" y="340"/>
     </wire>
     <wire>
-      <p1 x="2640" y="280"/>
-      <p2 x="2740" y="280"/>
+      <p1 x="4640" y="20"/>
+      <p2 x="4900" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="3980" y="20"/>
+      <p2 x="4040" y="20"/>
+    </wire>
+    <wire>
+      <p1 x="2560" y="660"/>
+      <p2 x="2700" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="2820" y="660"/>
+      <p2 x="3840" y="660"/>
+    </wire>
+    <wire>
+      <p1 x="2080" y="660"/>
+      <p2 x="2120" y="660"/>
     </wire>
     <wire>
       <p1 x="4120" y="280"/>
       <p2 x="4240" y="280"/>
     </wire>
     <wire>
-      <p1 x="4980" y="280"/>
-      <p2 x="5020" y="280"/>
+      <p1 x="2100" y="280"/>
+      <p2 x="2140" y="280"/>
     </wire>
     <wire>
-      <p1 x="1980" y="280"/>
-      <p2 x="2000" y="280"/>
+      <p1 x="3040" y="280"/>
+      <p2 x="3080" y="280"/>
+    </wire>
+    <wire>
+      <p1 x="2540" y="280"/>
+      <p2 x="2740" y="280"/>
     </wire>
     <wire>
       <p1 x="2560" y="600"/>
       <p2 x="2640" y="600"/>
+    </wire>
+    <wire>
+      <p1 x="4200" y="220"/>
+      <p2 x="4240" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="4440" y="220"/>
+      <p2 x="4520" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="1860" y="220"/>
+      <p2 x="2220" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="3040" y="220"/>
+      <p2 x="3080" y="220"/>
+    </wire>
+    <wire>
+      <p1 x="2680" y="220"/>
+      <p2 x="2740" y="220"/>
     </wire>
     <wire>
       <p1 x="2120" y="540"/>
@@ -1657,10 +1498,6 @@ dem Takt weiter geschaltet wird.}}</string>
     <wire>
       <p1 x="2200" y="540"/>
       <p2 x="2240" y="540"/>
-    </wire>
-    <wire>
-      <p1 x="3320" y="540"/>
-      <p2 x="3460" y="540"/>
     </wire>
     <wire>
       <p1 x="3480" y="540"/>
@@ -1672,19 +1509,15 @@ dem Takt weiter geschaltet wird.}}</string>
     </wire>
     <wire>
       <p1 x="2560" y="540"/>
-      <p2 x="3280" y="540"/>
+      <p2 x="3300" y="540"/>
     </wire>
     <wire>
       <p1 x="2140" y="540"/>
       <p2 x="2160" y="540"/>
     </wire>
     <wire>
-      <p1 x="4200" y="220"/>
-      <p2 x="4240" y="220"/>
-    </wire>
-    <wire>
-      <p1 x="4440" y="220"/>
-      <p2 x="4520" y="220"/>
+      <p1 x="3300" y="540"/>
+      <p2 x="3460" y="540"/>
     </wire>
     <wire>
       <p1 x="3400" y="160"/>
@@ -1693,6 +1526,14 @@ dem Takt weiter geschaltet wird.}}</string>
     <wire>
       <p1 x="4700" y="160"/>
       <p2 x="4720" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="3040" y="160"/>
+      <p2 x="3080" y="160"/>
+    </wire>
+    <wire>
+      <p1 x="2720" y="160"/>
+      <p2 x="2740" y="160"/>
     </wire>
     <wire>
       <p1 x="4780" y="160"/>
@@ -1743,8 +1584,12 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4320" y="480"/>
     </wire>
     <wire>
-      <p1 x="3580" y="-100"/>
-      <p2 x="4540" y="-100"/>
+      <p1 x="2600" y="740"/>
+      <p2 x="2860" y="740"/>
+    </wire>
+    <wire>
+      <p1 x="3060" y="740"/>
+      <p2 x="3860" y="740"/>
     </wire>
     <wire>
       <p1 x="1860" y="420"/>
@@ -1763,52 +1608,20 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4100" y="420"/>
     </wire>
     <wire>
-      <p1 x="3040" y="420"/>
-      <p2 x="3080" y="420"/>
-    </wire>
-    <wire>
-      <p1 x="2540" y="420"/>
-      <p2 x="2740" y="420"/>
-    </wire>
-    <wire>
       <p1 x="3220" y="420"/>
       <p2 x="3400" y="420"/>
     </wire>
     <wire>
       <p1 x="4220" y="420"/>
-      <p2 x="4240" y="420"/>
-    </wire>
-    <wire>
-      <p1 x="4300" y="420"/>
       <p2 x="4400" y="420"/>
     </wire>
     <wire>
-      <p1 x="2600" y="740"/>
-      <p2 x="2860" y="740"/>
-    </wire>
-    <wire>
-      <p1 x="3060" y="740"/>
-      <p2 x="3860" y="740"/>
-    </wire>
-    <wire>
-      <p1 x="2080" y="740"/>
-      <p2 x="2120" y="740"/>
-    </wire>
-    <wire>
-      <p1 x="2200" y="100"/>
-      <p2 x="2220" y="100"/>
-    </wire>
-    <wire>
-      <p1 x="2120" y="100"/>
-      <p2 x="2140" y="100"/>
+      <p1 x="3040" y="420"/>
+      <p2 x="3080" y="420"/>
     </wire>
     <wire>
       <p1 x="3340" y="100"/>
       <p2 x="4540" y="100"/>
-    </wire>
-    <wire>
-      <p1 x="2580" y="100"/>
-      <p2 x="2660" y="100"/>
     </wire>
     <wire>
       <p1 x="4760" y="100"/>
@@ -1817,14 +1630,6 @@ dem Takt weiter geschaltet wird.}}</string>
     <wire>
       <p1 x="4940" y="100"/>
       <p2 x="4980" y="100"/>
-    </wire>
-    <wire>
-      <p1 x="2720" y="100"/>
-      <p2 x="2780" y="100"/>
-    </wire>
-    <wire>
-      <p1 x="2220" y="100"/>
-      <p2 x="2240" y="100"/>
     </wire>
     <wire>
       <p1 x="3360" y="360"/>
@@ -1843,12 +1648,12 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="3560" y="360"/>
     </wire>
     <wire>
-      <p1 x="3040" y="360"/>
-      <p2 x="3080" y="360"/>
-    </wire>
-    <wire>
       <p1 x="2540" y="360"/>
       <p2 x="2740" y="360"/>
+    </wire>
+    <wire>
+      <p1 x="3040" y="360"/>
+      <p2 x="3180" y="360"/>
     </wire>
     <wire>
       <p1 x="4040" y="360"/>
@@ -1859,16 +1664,16 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="2620" y="680"/>
     </wire>
     <wire>
-      <p1 x="2040" y="300"/>
-      <p2 x="2060" y="300"/>
-    </wire>
-    <wire>
       <p1 x="3040" y="300"/>
       <p2 x="3080" y="300"/>
     </wire>
     <wire>
-      <p1 x="2680" y="300"/>
+      <p1 x="2540" y="300"/>
       <p2 x="2740" y="300"/>
+    </wire>
+    <wire>
+      <p1 x="2100" y="300"/>
+      <p2 x="2140" y="300"/>
     </wire>
     <wire>
       <p1 x="4660" y="300"/>
@@ -1883,20 +1688,16 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="2660" y="620"/>
     </wire>
     <wire>
-      <p1 x="4980" y="240"/>
-      <p2 x="5020" y="240"/>
-    </wire>
-    <wire>
-      <p1 x="4440" y="240"/>
-      <p2 x="4580" y="240"/>
-    </wire>
-    <wire>
       <p1 x="3040" y="240"/>
       <p2 x="3080" y="240"/>
     </wire>
     <wire>
-      <p1 x="2720" y="240"/>
+      <p1 x="2660" y="240"/>
       <p2 x="2740" y="240"/>
+    </wire>
+    <wire>
+      <p1 x="4440" y="240"/>
+      <p2 x="4580" y="240"/>
     </wire>
     <wire>
       <p1 x="4080" y="240"/>
@@ -1905,6 +1706,14 @@ dem Takt weiter geschaltet wird.}}</string>
     <wire>
       <p1 x="2560" y="560"/>
       <p2 x="3260" y="560"/>
+    </wire>
+    <wire>
+      <p1 x="3040" y="180"/>
+      <p2 x="3080" y="180"/>
+    </wire>
+    <wire>
+      <p1 x="2620" y="180"/>
+      <p2 x="2740" y="180"/>
     </wire>
     <wire>
       <p1 x="4760" y="180"/>
@@ -1931,10 +1740,6 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4160" y="500"/>
     </wire>
     <wire>
-      <p1 x="3780" y="500"/>
-      <p2 x="3800" y="500"/>
-    </wire>
-    <wire>
       <p1 x="2560" y="500"/>
       <p2 x="3220" y="500"/>
     </wire>
@@ -1943,20 +1748,16 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4620" y="500"/>
     </wire>
     <wire>
+      <p1 x="3040" y="440"/>
+      <p2 x="3080" y="440"/>
+    </wire>
+    <wire>
       <p1 x="4140" y="440"/>
       <p2 x="4180" y="440"/>
     </wire>
     <wire>
       <p1 x="1960" y="440"/>
-      <p2 x="1980" y="440"/>
-    </wire>
-    <wire>
-      <p1 x="2020" y="440"/>
       <p2 x="2040" y="440"/>
-    </wire>
-    <wire>
-      <p1 x="3280" y="440"/>
-      <p2 x="3320" y="440"/>
     </wire>
     <wire>
       <p1 x="4460" y="440"/>
@@ -1967,40 +1768,20 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="3760" y="440"/>
     </wire>
     <wire>
-      <p1 x="2540" y="440"/>
-      <p2 x="2740" y="440"/>
-    </wire>
-    <wire>
-      <p1 x="3040" y="440"/>
-      <p2 x="3180" y="440"/>
-    </wire>
-    <wire>
       <p1 x="4300" y="440"/>
       <p2 x="4400" y="440"/>
-    </wire>
-    <wire>
-      <p1 x="4240" y="440"/>
-      <p2 x="4260" y="440"/>
     </wire>
     <wire>
       <p1 x="3960" y="440"/>
       <p2 x="4000" y="440"/>
     </wire>
     <wire>
-      <p1 x="3320" y="440"/>
+      <p1 x="3300" y="440"/>
       <p2 x="3400" y="440"/>
-    </wire>
-    <wire>
-      <p1 x="2100" y="120"/>
-      <p2 x="2140" y="120"/>
     </wire>
     <wire>
       <p1 x="3360" y="120"/>
       <p2 x="4040" y="120"/>
-    </wire>
-    <wire>
-      <p1 x="2600" y="120"/>
-      <p2 x="2660" y="120"/>
     </wire>
     <wire>
       <p1 x="4760" y="120"/>
@@ -2011,8 +1792,12 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4980" y="120"/>
     </wire>
     <wire>
-      <p1 x="3580" y="-60"/>
-      <p2 x="4040" y="-60"/>
+      <p1 x="3040" y="380"/>
+      <p2 x="3080" y="380"/>
+    </wire>
+    <wire>
+      <p1 x="2540" y="380"/>
+      <p2 x="2740" y="380"/>
     </wire>
     <wire>
       <p1 x="3500" y="380"/>
@@ -2039,24 +1824,8 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4880" y="380"/>
     </wire>
     <wire>
-      <p1 x="3040" y="380"/>
-      <p2 x="3080" y="380"/>
-    </wire>
-    <wire>
-      <p1 x="2540" y="380"/>
-      <p2 x="2740" y="380"/>
-    </wire>
-    <wire>
       <p1 x="3380" y="380"/>
       <p2 x="3400" y="380"/>
-    </wire>
-    <wire>
-      <p1 x="4260" y="380"/>
-      <p2 x="4280" y="380"/>
-    </wire>
-    <wire>
-      <p1 x="2080" y="700"/>
-      <p2 x="2120" y="700"/>
     </wire>
     <wire>
       <p1 x="2560" y="700"/>
@@ -2065,10 +1834,6 @@ dem Takt weiter geschaltet wird.}}</string>
     <wire>
       <p1 x="2720" y="700"/>
       <p2 x="2820" y="700"/>
-    </wire>
-    <wire>
-      <p1 x="1860" y="60"/>
-      <p2 x="2220" y="60"/>
     </wire>
     <wire>
       <p1 x="3260" y="60"/>
@@ -2115,11 +1880,7 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="3980" y="520"/>
     </wire>
     <wire>
-      <p1 x="2060" y="300"/>
-      <p2 x="2060" y="340"/>
-    </wire>
-    <wire>
-      <p1 x="2700" y="340"/>
+      <p1 x="2700" y="260"/>
       <p2 x="2700" y="660"/>
     </wire>
     <wire>
@@ -2133,14 +1894,6 @@ dem Takt weiter geschaltet wird.}}</string>
     <wire>
       <p1 x="4880" y="320"/>
       <p2 x="4880" y="380"/>
-    </wire>
-    <wire>
-      <p1 x="4240" y="400"/>
-      <p2 x="4240" y="420"/>
-    </wire>
-    <wire>
-      <p1 x="4240" y="440"/>
-      <p2 x="4240" y="460"/>
     </wire>
     <wire>
       <p1 x="1940" y="460"/>
@@ -2167,16 +1920,16 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4120" y="460"/>
     </wire>
     <wire>
-      <p1 x="1820" y="20"/>
-      <p2 x="1820" y="460"/>
-    </wire>
-    <wire>
       <p1 x="4380" y="380"/>
       <p2 x="4380" y="400"/>
     </wire>
     <wire>
       <p1 x="3740" y="480"/>
       <p2 x="3740" y="540"/>
+    </wire>
+    <wire>
+      <p1 x="1820" y="0"/>
+      <p2 x="1820" y="460"/>
     </wire>
     <wire>
       <p1 x="3360" y="120"/>
@@ -2199,7 +1952,7 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4640" y="300"/>
     </wire>
     <wire>
-      <p1 x="2720" y="240"/>
+      <p1 x="2720" y="160"/>
       <p2 x="2720" y="700"/>
     </wire>
     <wire>
@@ -2219,12 +1972,8 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="2600" y="740"/>
     </wire>
     <wire>
-      <p1 x="2600" y="-80"/>
-      <p2 x="2600" y="120"/>
-    </wire>
-    <wire>
-      <p1 x="2220" y="60"/>
-      <p2 x="2220" y="100"/>
+      <p1 x="2220" y="220"/>
+      <p2 x="2220" y="260"/>
     </wire>
     <wire>
       <p1 x="4780" y="180"/>
@@ -2259,10 +2008,6 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="3640" y="380"/>
     </wire>
     <wire>
-      <p1 x="4280" y="380"/>
-      <p2 x="4280" y="400"/>
-    </wire>
-    <wire>
       <p1 x="3260" y="400"/>
       <p2 x="3260" y="560"/>
     </wire>
@@ -2271,19 +2016,11 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="3260" y="320"/>
     </wire>
     <wire>
-      <p1 x="1980" y="280"/>
-      <p2 x="1980" y="440"/>
-    </wire>
-    <wire>
-      <p1 x="2620" y="260"/>
-      <p2 x="2620" y="400"/>
-    </wire>
-    <wire>
-      <p1 x="2620" y="400"/>
+      <p1 x="2620" y="180"/>
       <p2 x="2620" y="680"/>
     </wire>
     <wire>
-      <p1 x="4540" y="-100"/>
+      <p1 x="4540" y="-20"/>
       <p2 x="4540" y="100"/>
     </wire>
     <wire>
@@ -2295,7 +2032,7 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4160" y="500"/>
     </wire>
     <wire>
-      <p1 x="1860" y="60"/>
+      <p1 x="1860" y="220"/>
       <p2 x="1860" y="420"/>
     </wire>
     <wire>
@@ -2304,10 +2041,10 @@ dem Takt weiter geschaltet wird.}}</string>
     </wire>
     <wire>
       <p1 x="3780" y="480"/>
-      <p2 x="3780" y="500"/>
+      <p2 x="3780" y="560"/>
     </wire>
     <wire>
-      <p1 x="2120" y="100"/>
+      <p1 x="2120" y="260"/>
       <p2 x="2120" y="460"/>
     </wire>
     <wire>
@@ -2315,7 +2052,7 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="3400" y="180"/>
     </wire>
     <wire>
-      <p1 x="4040" y="-60"/>
+      <p1 x="4040" y="20"/>
       <p2 x="4040" y="120"/>
     </wire>
     <wire>
@@ -2343,16 +2080,8 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4300" y="480"/>
     </wire>
     <wire>
-      <p1 x="3280" y="440"/>
-      <p2 x="3280" y="540"/>
-    </wire>
-    <wire>
-      <p1 x="2640" y="280"/>
+      <p1 x="2640" y="200"/>
       <p2 x="2640" y="600"/>
-    </wire>
-    <wire>
-      <p1 x="3800" y="500"/>
-      <p2 x="3800" y="560"/>
     </wire>
     <wire>
       <p1 x="2140" y="500"/>
@@ -2367,15 +2096,11 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4060" y="380"/>
     </wire>
     <wire>
-      <p1 x="2780" y="20"/>
-      <p2 x="2780" y="100"/>
-    </wire>
-    <wire>
       <p1 x="4960" y="80"/>
       <p2 x="4960" y="160"/>
     </wire>
     <wire>
-      <p1 x="2660" y="320"/>
+      <p1 x="2660" y="240"/>
       <p2 x="2660" y="620"/>
     </wire>
     <wire>
@@ -2383,16 +2108,12 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="2020" y="500"/>
     </wire>
     <wire>
-      <p1 x="2020" y="340"/>
-      <p2 x="2020" y="440"/>
-    </wire>
-    <wire>
-      <p1 x="2020" y="260"/>
-      <p2 x="2020" y="280"/>
-    </wire>
-    <wire>
       <p1 x="4580" y="240"/>
       <p2 x="4580" y="500"/>
+    </wire>
+    <wire>
+      <p1 x="3300" y="440"/>
+      <p2 x="3300" y="540"/>
     </wire>
     <wire>
       <p1 x="4200" y="440"/>
@@ -2407,10 +2128,6 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="3560" y="360"/>
     </wire>
     <wire>
-      <p1 x="3560" y="-140"/>
-      <p2 x="3560" y="-100"/>
-    </wire>
-    <wire>
       <p1 x="5100" y="-20"/>
       <p2 x="5100" y="160"/>
     </wire>
@@ -2423,7 +2140,7 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="3820" y="500"/>
     </wire>
     <wire>
-      <p1 x="3180" y="440"/>
+      <p1 x="3180" y="360"/>
       <p2 x="3180" y="580"/>
     </wire>
     <wire>
@@ -2439,12 +2156,12 @@ dem Takt weiter geschaltet wird.}}</string>
       <p2 x="4340" y="360"/>
     </wire>
     <wire>
-      <p1 x="2680" y="300"/>
-      <p2 x="2680" y="640"/>
+      <p1 x="3960" y="-60"/>
+      <p2 x="3960" y="-20"/>
     </wire>
     <wire>
-      <p1 x="3320" y="440"/>
-      <p2 x="3320" y="540"/>
+      <p1 x="2680" y="220"/>
+      <p2 x="2680" y="640"/>
     </wire>
     <wire>
       <p1 x="4600" y="260"/>
