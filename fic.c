@@ -37,6 +37,7 @@
 #define INC "10111"
 #define DEC "11000"
 #define CMP "11001"
+#define POW "11010"
 
 //verificare param (prea multi, prea putini, corectitudinea de tip)
 //cmp prima val pe 5 biti, nu 0 concatenat cu 4 => done
@@ -53,11 +54,17 @@
 #define Y4 "0001"
 #define ACC4 "0010"
 
+#define X5 "00000"
+#define Y5 "00001"
+#define ACC5 "00010"
+
 #define X6 "000000"
 #define Y6 "000001"
 #define ACC6 "000010"
 
 #define HLT "1110000000000000"
+#define NOP "1110100000000000"
+#define NOPFINAL "1110100000000"
 
 void nr_corect_de_parametrii(int argc, int x)
 {
@@ -381,7 +388,7 @@ int main(int argc, char *argv[])
         // char rezultat[12]="";
         // char rezultat8[9]="";
         char *linie=NULL;
-        printf("Linie matrice: %s\n", matrice[i]);
+        printf("Linie %d matrice: %s\n", i,matrice[i]);
         linie=strtok(matrice[i], " ");  //am primul cuv din line =instr
         if (linie != NULL)
         {
@@ -412,6 +419,7 @@ int main(int argc, char *argv[])
                 (strcasecmp(linie, "INC")!=0 ) &&
                 (strcasecmp(linie, "DEC")!=0 ) &&
                 (strcasecmp(linie, "CMP")!=0 ) &&
+                (strcasecmp(linie, "POW")!=0 ) &&
                 (strcasecmp(linie, "HLT")!=0 ) 
             )
             {
@@ -1684,6 +1692,98 @@ int main(int argc, char *argv[])
                 }
                 transformare_linie_hexa(buffer_linie, &descr_hex_out);
                 scriere_in_fisier(&descr_out, buffer_linie);
+            }
+            if (strcasecmp(linie, "POW") == 0)
+            {
+                char buffer_linie[17]="";
+                strcat(buffer_linie, POW);
+                char *cuv1=NULL, *cuv2=NULL;
+                cuv1 = strtok(NULL, " ");
+                cuv2 = strtok(NULL, " ");
+                verificare_argument_existent(cuv1);
+                verificare_argument_existent(cuv2);
+                char *gresit=NULL;
+                gresit=strtok(NULL, " ");
+                if(gresit!=NULL)
+                {
+                    perror("Sunt prea multe argumente la POW!");
+                    exit(7);
+                }
+               if(verificare_atoi(cuv1)==-1)
+               {
+                    verificare_registru_corect(cuv1);
+                    strcat(buffer_linie, "0");
+                    if (strcasecmp(cuv1, "X") == 0)
+                    {
+                        strcat(buffer_linie, X5);
+                    }
+                    if (strcasecmp(cuv1, "Y") == 0)
+                    {
+                        strcat(buffer_linie, Y5);
+                    }
+                    if (strcasecmp(cuv1, "ACC") == 0)
+                    {
+                        strcat(buffer_linie, ACC5);
+                    }
+               }
+               else
+               {
+                    strcat(buffer_linie, "1");
+                    char rezultat[5]="";
+                    conversie_in_binar(verificare_atoi(cuv1), rezultat, 5);
+                    strcat(buffer_linie, rezultat);
+               }
+               if(verificare_atoi(cuv2)==-1)
+               {
+                    perror("Al doilea argument poate avea doar valoare immediate!");
+                    exit(7);
+               }
+               int limita=verificare_atoi(cuv2);
+               char rezultat2[5] = "";
+               conversie_in_binar(verificare_atoi(cuv2), rezultat2, 5);
+               strcat(buffer_linie, rezultat2);
+               strcat(buffer_linie, "\n");
+               transformare_linie_hexa(buffer_linie, &descr_hex_out);
+               scriere_in_fisier(&descr_out, buffer_linie);
+               for(int i=0; i<limita-1; i++)
+               {
+                    char buffer_linie[17]="";
+                    strcat(buffer_linie, NOP);
+                    strcat(buffer_linie, "\n");
+                    transformare_linie_hexa(buffer_linie, &descr_hex_out);
+                    scriere_in_fisier(&descr_out, buffer_linie);
+               }
+               if(verificare_atoi(cuv1)==-1)
+               {
+                    char buffer_linie[17]="";
+                    strcat(buffer_linie, NOPFINAL);
+                    if (strcasecmp(cuv1, "X") == 0)
+                    {
+                        strcat(buffer_linie, X);
+                    }
+                    if (strcasecmp(cuv1, "Y") == 0)
+                    {
+                        strcat(buffer_linie, Y);
+                    }
+                    if (strcasecmp(cuv1, "ACC") == 0)
+                    {
+                        strcat(buffer_linie, ACC);
+                    }
+                    strcat(buffer_linie, "1");
+                    strcat(buffer_linie, "\n");
+                    transformare_linie_hexa(buffer_linie, &descr_hex_out);
+                    scriere_in_fisier(&descr_out, buffer_linie);
+               }
+               else
+               {
+                    char buffer_linie[17]="";
+                    strcat(buffer_linie, NOP);
+                    strcat(buffer_linie, "\n");
+                    transformare_linie_hexa(buffer_linie, &descr_hex_out);
+                    scriere_in_fisier(&descr_out, buffer_linie);
+               }
+               
+                
             }
         }
     }     
