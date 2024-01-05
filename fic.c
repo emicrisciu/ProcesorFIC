@@ -38,6 +38,7 @@
 #define DEC "11000"
 #define CMP "11001"
 #define POW "11010"
+#define MDL "11011"
 
 //verificare param (prea multi, prea putini, corectitudinea de tip)
 //cmp prima val pe 5 biti, nu 0 concatenat cu 4 => done
@@ -363,11 +364,13 @@ int main(int argc, char *argv[])
     char buffer_fisier[var.st_size];
     char intermediar[10]="";
     int rd=0;
+    strcpy(buffer_fisier, "");
     while((rd=read(descr_in, intermediar, 10))!=0)
     {
         char intermediar2[10]="";
         strncpy(intermediar2, intermediar, rd);
         strcat(buffer_fisier, intermediar2);
+        strcpy(intermediar, "");
     }
     //printf("%s", buffer_fisier);
 
@@ -420,6 +423,7 @@ int main(int argc, char *argv[])
                 (strcasecmp(linie, "DEC")!=0 ) &&
                 (strcasecmp(linie, "CMP")!=0 ) &&
                 (strcasecmp(linie, "POW")!=0 ) &&
+                (strcasecmp(linie, "MDL")!=0 ) &&
                 (strcasecmp(linie, "HLT")!=0 ) 
             )
             {
@@ -1729,6 +1733,7 @@ int main(int argc, char *argv[])
                else
                {
                     strcat(buffer_linie, "1");
+                    verificare_capacitate_valoare_imm(cuv1, 32);
                     char rezultat[5]="";
                     conversie_in_binar(verificare_atoi(cuv1), rezultat, 5);
                     strcat(buffer_linie, rezultat);
@@ -1739,6 +1744,7 @@ int main(int argc, char *argv[])
                     exit(7);
                }
                int limita=verificare_atoi(cuv2);
+               verificare_capacitate_valoare_imm(cuv2, 32);
                char rezultat2[5] = "";
                conversie_in_binar(verificare_atoi(cuv2), rezultat2, 5);
                strcat(buffer_linie, rezultat2);
@@ -1785,10 +1791,52 @@ int main(int argc, char *argv[])
                
                 
             }
+            if(strcasecmp(linie, "MDL") == 0)
+            {
+                char buffer_linie[17]="";
+                strcat(buffer_linie, MDL);
+                char *cuv1=NULL;
+                cuv1 = strtok(NULL, " ");
+                char *gresit=NULL;
+                gresit=strtok(NULL, " ");
+                if(gresit!=NULL)
+                {
+                    perror("Sunt prea multe argumente la MDL!");
+                    exit(7);
+                }
+                verificare_argument_existent(cuv1);
+                if(verificare_atoi(cuv1)==-1)
+                {
+                    perror("Argumentul poate fii doar valoare immediate!");
+                    exit(7);
+                }
+                if(cuv1[0]=='-')
+                {
+                    strcat(buffer_linie, "1");
+                    char numar_natural[10]="";
+                    strcpy(numar_natural, cuv1+1);
+                    verificare_capacitate_valoare_imm(numar_natural, 1023);
+                    char rezultat[10]="";
+                    conversie_in_binar(verificare_atoi(numar_natural), rezultat, 10);
+                    strcat(buffer_linie, rezultat);
+                }
+                else
+                {
+                    strcat(buffer_linie, "0");
+                    verificare_capacitate_valoare_imm(cuv1, 1023);
+                    char rezultat[10]="";
+                    conversie_in_binar(verificare_atoi(cuv1), rezultat, 10);
+                    strcat(buffer_linie, rezultat);
+                }
+                strcat(buffer_linie, "\n");
+                transformare_linie_hexa(buffer_linie, &descr_hex_out);
+                scriere_in_fisier(&descr_out, buffer_linie);
+
+            }
         }
     }     
     close(descr_hex_out);
     close(descr_in);
     close(descr_out);
-    return 0;
+    return 0;   
 }

@@ -261,7 +261,7 @@ bei der Speicheradressierung verwendet.}}</string>
           <int>16</int>
         </entry>
       </elementAttributes>
-      <pos x="740" y="440"/>
+      <pos x="740" y="460"/>
     </visualElement>
     <visualElement>
       <elementName>Tunnel</elementName>
@@ -1010,6 +1010,30 @@ bei der Speicheradressierung verwendet.}}</string>
       </elementAttributes>
       <pos x="120" y="1960"/>
     </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>NetName</string>
+          <string>a</string>
+        </entry>
+      </elementAttributes>
+      <pos x="200" y="60"/>
+    </visualElement>
+    <visualElement>
+      <elementName>Tunnel</elementName>
+      <elementAttributes>
+        <entry>
+          <string>rotation</string>
+          <rotation rotation="2"/>
+        </entry>
+        <entry>
+          <string>NetName</string>
+          <string>a</string>
+        </entry>
+      </elementAttributes>
+      <pos x="760" y="440"/>
+    </visualElement>
   </visualElements>
   <wires>
     <wire>
@@ -1313,10 +1337,6 @@ bei der Speicheradressierung verwendet.}}</string>
       <p2 x="780" y="180"/>
     </wire>
     <wire>
-      <p1 x="740" y="440"/>
-      <p2 x="760" y="440"/>
-    </wire>
-    <wire>
       <p1 x="160" y="440"/>
       <p2 x="240" y="440"/>
     </wire>
@@ -1351,6 +1371,10 @@ bei der Speicheradressierung verwendet.}}</string>
     <wire>
       <p1 x="740" y="60"/>
       <p2 x="780" y="60"/>
+    </wire>
+    <wire>
+      <p1 x="160" y="60"/>
+      <p2 x="200" y="60"/>
     </wire>
     <wire>
       <p1 x="300" y="700"/>
@@ -1453,12 +1477,16 @@ bei der Speicheradressierung verwendet.}}</string>
       <p2 x="920" y="460"/>
     </wire>
     <wire>
-      <p1 x="760" y="460"/>
-      <p2 x="780" y="460"/>
+      <p1 x="740" y="460"/>
+      <p2 x="760" y="460"/>
     </wire>
     <wire>
       <p1 x="300" y="460"/>
       <p2 x="420" y="460"/>
+    </wire>
+    <wire>
+      <p1 x="760" y="460"/>
+      <p2 x="780" y="460"/>
     </wire>
     <wire>
       <p1 x="820" y="1100"/>
@@ -2147,10 +2175,6 @@ bei der Speicheradressierung verwendet.}}</string>
     <wire>
       <p1 x="820" y="-300"/>
       <p2 x="820" y="-240"/>
-    </wire>
-    <wire>
-      <p1 x="760" y="440"/>
-      <p2 x="760" y="460"/>
     </wire>
     <wire>
       <p1 x="760" y="460"/>
