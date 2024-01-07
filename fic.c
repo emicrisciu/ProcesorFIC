@@ -67,6 +67,8 @@
 #define NOP "1110100000000000"
 #define NOPFINAL "1110100000000"
 
+int nrNOP=0;
+
 void nr_corect_de_parametrii(int argc, int x)
 {
     if (argc != x)
@@ -141,7 +143,8 @@ char* convertire_eticheta(char matrice[100][100], int indice, char* eticheta, ch
         if(strcasecmp(linie, eticheta)==0)
         {
             char sir_numar_in_binar[12]="";
-            int aux=i;
+            int aux=i+nrNOP;
+            //nrNOP=0;
             while(aux!=0)
             {   
                 if(aux%2==0)
@@ -350,6 +353,7 @@ int main(int argc, char *argv[])
     char matrice[100][100];
     char matrice_copie[100][100];
     int indice=0;
+   
     nr_corect_de_parametrii(argc, 4);
     deschidere_fisier_pentru_citire(&descr_in, argv[1]);
     deschidere_fisier_pentru_scriere(&descr_out, argv[2]);
@@ -391,7 +395,7 @@ int main(int argc, char *argv[])
         // char rezultat[12]="";
         // char rezultat8[9]="";
         char *linie=NULL;
-        printf("Linie %d matrice: %s\n", i,matrice[i]);
+       // printf("Linie %d matrice: %s\n", i,matrice[i]);
         linie=strtok(matrice[i], " ");  //am primul cuv din line =instr
         if (linie != NULL)
         {
@@ -1751,6 +1755,7 @@ int main(int argc, char *argv[])
                strcat(buffer_linie, "\n");
                transformare_linie_hexa(buffer_linie, &descr_hex_out);
                scriere_in_fisier(&descr_out, buffer_linie);
+               nrNOP=nrNOP+limita;
                if(limita!=0)
                {
                    for (int i = 0; i < limita - 1; i++)
