@@ -43,8 +43,6 @@
 //verificare param (prea multi, prea putini, corectitudinea de tip)
 //cmp prima val pe 5 biti, nu 0 concatenat cu 4 => done
 
-
-
 #define X "00"
 #define Y "01"
 #define ACC "10"
